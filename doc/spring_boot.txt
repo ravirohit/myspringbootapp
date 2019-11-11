@@ -1,0 +1,23 @@
+Q) @SpringBootApplication is not resolving.
+Ans: delete the ".m2\repository\org\springframework\boot\spring-boot-autoconfigure" folder and again rebuild the application.
+Q) SpringApplication is not resolving in spring boot.
+Ans: change the version of spring boot parent from  <version>2.0.2.RELEASE</version>  to <version>1.4.2.RELEASE</version>.
+
+Q) created controller but not able to hit the api from browser.
+Ans: Reason: main class was in different package and controller class was in different package not even sub package of that.
+    - i added the controller class package scan in the main class and it start working.
+Q) where we can provide URL pattern to map to DispatcherServlet and which URL pattern for UI pages.
+Ans: This is beauty of Spring boot, we don't have to do manual configuration in spring boot. Automatically it forward the request to UI and resource controller.
+
+Q) How to do basic data_source configuration in spring boot?
+Ans:  
+
+Q) How to define where to scan for entity class?
+Ans: @EntityScan( basePackages = {"com.learn"} ) along with @SpringBootApplication
+
+Q) How to map byte arraty to BLOB in db?
+Ans: @ElementCollection
+	 @Lob
+	 @Column(name="IMAGE", nullable=false, columnDefinition="longblob")
+	 private List<byte[]> fileList;
+	 

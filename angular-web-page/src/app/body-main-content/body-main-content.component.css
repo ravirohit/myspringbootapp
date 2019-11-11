@@ -1,0 +1,51 @@
+#imgDiv{
+    overflow: auto;
+    max-height: 85vh;
+    max-width: 100%;
+    /* width: 85%; */
+    
+}
+/*    */
+#imgcontrainerdiv{
+    height: 85vh;
+    background: black;
+    display: flex;
+    /*justify-content: space-between;  to keep same distance in between*/  
+    flex-wrap: wrap;   /* overflow div will go in new line */
+    overflow-y: auto;
+}
+.imgblock{
+    background:rgb(230, 226, 226);
+    height:250px;
+    width:200px;
+    margin: 19px;
+}
+#imgFileId{
+    height:250px;
+    width:200px;
+}
+#imgdialoguediv {
+   height:100%;
+   width:100%;
+   background:yellow;
+   position: absolute;
+   /*opacity: 0.5;*/
+   background-color: rgb(94, 93, 92,0.5);
+   left: 0px;
+   top: 0px;
+   z-index: 2;
+}
+#dialogueImgid{
+  display: block;
+  height:650px;
+  width:1000px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+}
+#diaglogueCloseButton{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 83%;
+    color: ALICEBLUE;
+}

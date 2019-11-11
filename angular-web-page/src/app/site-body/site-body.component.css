@@ -1,0 +1,14 @@
+.bodyfloat {
+float:left;
+}
+#maincontentdiv{
+    width: 80%;
+    height:85vh;
+
+}
+#rightsidecontentdiv{
+    background: linear-gradient(45deg, black, transparent);
+    width: 20%;
+    height:85vh;
+
+}
