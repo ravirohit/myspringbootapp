@@ -20,6 +20,11 @@ public class UserController {
 	@GetMapping("isalive")
 	public String heartBeatTest(){
 		logger.debug("Backend server is up");
+		try{
+			Thread.sleep(3000);
+		} catch(Exception e) {
+			
+		}
 		return "{\"status\":\"ok\"}";
 	}
 	@PostMapping("login")

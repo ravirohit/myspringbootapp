@@ -2,21 +2,23 @@
    <img [src]="imgSrc" style="cursor:pointer" id="imgFile" (click)="onMainImgClick()"> 
 </div> -->
 
-<div id="imgcontrainerdiv">
+<div id="imgcontrainerdiv"> <!-- (scroll)="onScroll($event)" -->
   <div class="imgblock" *ngFor="let ele of imgSrc">
     <img [src]="ele.imgSrc" style="cursor:pointer" id="imgFileId" (click)="onMainImgClick(ele)"/> 
   </div>
+  
+
 
   <div id="imgdialoguediv" *ngIf="show">
     <a href="#" (click)="onDialogueClick()" id="diaglogueCloseButton">close</a>
     <img [src]="dialogueImgSrc" style="cursor:pointer" id="dialogueImgid" (click)="onImgDialogueImgClick()"/> 
   </div>
-  <div class="imgblock" *ngFor="let ele of imgSrc">
+  <!-- <div class="imgblock" *ngFor="let ele of imgSrc">
     
   </div>
   <div class="imgblock" *ngFor="let ele of imgSrc">
     
-    </div>
+    </div> -->
   
 
    

@@ -13,13 +13,37 @@ export class BodyMainContentComponent implements OnInit {
    private imgSrc:any;
    private fileIndex:number=-1;
    private subFileIndex:number=-1;
-   private getResponseData:Object = null;
+   private getResponseData:any = null;
    private show:boolean=false;
    private dialogueBoxImgCount:any=-1;
    private dialogueImgSrc:any;
+   private count:number=1;
 
 
-  constructor(private apiAction:ApiActionsService) { }
+  constructor(private apiAction:ApiActionsService) { 
+
+    setInterval(() => {
+      console.log("on scroll event get called:",this.getResponseData);
+      console.log("this.imgSrc:",this.imgSrc);
+      console.log('this.count:'+this.count);
+      if(this.imgSrc == null){
+        return;
+      }
+      let randomImg = Math.floor(Math.random()*(this.imgSrc.length-0));
+      
+      let base64Str = this.convertByteArraytoBase64(this.getResponseData[randomImg].fileList[0]);
+      let eachImg = {imgId:this.imgSrc.length,imgSrc:'data:image/jpeg;base64,' + base64Str,imgIndex:0};
+      //this.dialogueImgSrc = 'data:image/jpeg;base64,' + base64Str;
+      //this.imgSrc.push('data:image/jpeg;base64,' + base64Str);
+      
+      if(this.count < 20) {
+        this.imgSrc.push(eachImg);
+        this.getResponseData.push({id:"customid",category:null,email:'toemailrohit@gmail.com',fileList:[this.getResponseData[randomImg].fileList[0]]});
+        this.count++;
+      }
+
+      },5000)
+  }
 
   ngOnInit() {
     console.log("after called");
@@ -34,8 +58,8 @@ export class BodyMainContentComponent implements OnInit {
       this.getResponseData = data;
       for(let index = 0; data[index] != null; index++ ) {
         let base64Str = this.convertByteArraytoBase64(this.getResponseData[index].fileList[this.subFileIndex]);
-        let eachImg = {id:-1,imgSrc:"",imgIndex:-1};
-        eachImg.id = index; 
+        let eachImg = {imgId:-1,imgSrc:"",imgIndex:-1};
+        eachImg.imgId = index; 
         eachImg.imgIndex = 0; 
         eachImg.imgSrc = 'data:image/jpeg;base64,' + base64Str;
         this.imgSrc.push(eachImg);
@@ -57,23 +81,39 @@ export class BodyMainContentComponent implements OnInit {
     console.log("ele passed:",ele);
     this.show = true;
     this.dialogueBoxImgCount = ele;
-    if(this.getResponseData[this.dialogueBoxImgCount.id].fileList[this.dialogueBoxImgCount.imgIndex] == null){
+    if(this.getResponseData[this.dialogueBoxImgCount.imgId].fileList[this.dialogueBoxImgCount.imgIndex] == null){
       ele.imgIndex = 0;
     } 
-    let base64Str = this.convertByteArraytoBase64(this.getResponseData[this.dialogueBoxImgCount.id].fileList[this.dialogueBoxImgCount.imgIndex]);
+    let base64Str = this.convertByteArraytoBase64(this.getResponseData[this.dialogueBoxImgCount.imgId].fileList[this.dialogueBoxImgCount.imgIndex]);
     this.dialogueImgSrc = 'data:image/jpeg;base64,' + base64Str;
   }
   onImgDialogueImgClick(){
     this.dialogueBoxImgCount.imgIndex += 1;
-    if(this.getResponseData[this.dialogueBoxImgCount.id].fileList[this.dialogueBoxImgCount.imgIndex] == null){
+    if(this.getResponseData[this.dialogueBoxImgCount.imgId].fileList[this.dialogueBoxImgCount.imgIndex] == null){
       this.dialogueBoxImgCount.imgIndex = 0;
     } 
-    let base64Str = this.convertByteArraytoBase64(this.getResponseData[this.dialogueBoxImgCount.id].fileList[this.dialogueBoxImgCount.imgIndex]);
+    let base64Str = this.convertByteArraytoBase64(this.getResponseData[this.dialogueBoxImgCount.imgId].fileList[this.dialogueBoxImgCount.imgIndex]);
     this.dialogueImgSrc = 'data:image/jpeg;base64,' + base64Str;
   }
   onDialogueClick(){
     this.show = false;
     this.dialogueBoxImgCount=null;
+  }
+  onScroll(event:any){
+    console.log("on scoll event get called:",this.getResponseData);
+    console.log("this.imgSrc:",this.imgSrc);
+    console.log('this.count:'+this.count);
+    
+    let base64Str = this.convertByteArraytoBase64(this.getResponseData[0].fileList[0]);
+    let eachImg = {imgId:this.imgSrc.length,imgSrc:'data:image/jpeg;base64,' + base64Str,imgIndex:0};
+    //this.dialogueImgSrc = 'data:image/jpeg;base64,' + base64Str;
+    //this.imgSrc.push('data:image/jpeg;base64,' + base64Str);
+    
+    if(this.count < 5) {
+      this.imgSrc.push(eachImg);
+      this.getResponseData.push({id:"customid",category:null,email:'toemailrohit@gmail.com',fileList:[this.getResponseData[0].fileList[0]]});
+      this.count++;
+    }
   }
 
 }

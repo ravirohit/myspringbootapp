@@ -1,0 +1,25 @@
+-> lazy loading send index 0 at begining. then fetch max 10 records and remaining after 5 seconds for max 50 record.
+   then use pagination.
+   GET: 
+        http://localhost:8080/getfiles
+   Response: 
+    [  totalFileCount:number,
+       files:[{           // array size can be less than totalFileCount
+            id: "2aa199af-77fb-4994-af2b-eaeda525a585", 
+            name: "friendly name",
+            category: null, 
+            email: "ravi@gmail.com", 
+           // fileList: []   // each element is file byte array
+             file: one file out of all in this set
+        }]
+    ]
+-> to open dialogue make get api with id in query param :
+   GET:
+   Response:
+   [{
+        id: "2aa199af-77fb-4994-af2b-eaeda525a585", 
+        name:"friendly name"
+        category: null, 
+        email: "ravi@gmail.com", 
+        fileList: []   // each element is file byte array
+    }]
